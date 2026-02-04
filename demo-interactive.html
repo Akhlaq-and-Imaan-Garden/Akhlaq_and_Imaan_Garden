@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Features Demo - Akhlaq and Imaan Garden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .demo-header h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #00a896;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .demo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+        .demo-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .demo-card h3 {
+            font-family: 'Fredoka One', cursive;
+            color: #00a896;
+            margin-bottom: 15px;
+        }
+        .demo-card p {
+            color: #1d3557;
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin: 8px 0;
+            color: #1d3557;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <!-- <span class="moon-icon">🌙</span> -->
+                <a href="index.html" class="footer-logo-link" aria-label="Akhlaq and Imaan Garden home">
+                    <img src="images/Jr.%20Logo.png" alt="Akhlaq and Imaan Garden logo" class="nav-logo-img" width="250" loading="lazy" style="height:auto;">
+                </a>
+                <span class="nav-title">Akhlaq and Imaan Garden! Interactive Demo</span>
+            </div>
+            <a href="index.html" class="btn" style="background-color: #00a896;color: white;">Back to App</a>
+        </div>
+    </nav>
+
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>🎮 Interactive Features Demo</h1>
+            <p style="font-size: 1.2rem; color: #6a4c93;">Click any feature below to try it out!</p>
+        </div>
+
+        <div class="demo-grid">
+            <!-- Photo Upload -->
+            <div class="demo-card">
+                <div class="demo-icon">📸</div>
+                <h3>Photo Proof System</h3>
+                <p>Upload photos as quest completion proof</p>
+                <ul class="feature-list">
+                    <li>✓ Take photo with camera</li>
+                    <li>✓ Choose from gallery</li>
+                    <li>✓ Preview before saving</li>
+                    <li>✓ Linked to quests</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openPhotoUploadModal(1)">
+                    <i class="fas fa-camera"></i> Try Photo Upload
+                </button>
+            </div>
+
+            <!-- Gallery -->
+            <div class="demo-card">
+                <div class="demo-icon">📷</div>
+                <h3>Photo Gallery</h3>
+                <p>View all your quest memories</p>
+                <ul class="feature-list">
+                    <li>✓ Grid layout display</li>
+                    <li>✓ Full-screen viewer</li>
+                    <li>✓ Share photos</li>
+                    <li>✓ Download to device</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openGalleryModal()">
+                    <i class="fas fa-images"></i> Open Gallery
+                </button>
+            </div>
+
+            <!-- Drawing Canvas -->
+            <div class="demo-card">
+                <div class="demo-icon">🎨</div>
+                <h3>Drawing Canvas</h3>
+                <p>Digital drawing pad for creative quests</p>
+                <ul class="feature-list">
+                    <li>✓ 6 color options</li>
+                    <li>✓ 3 brush sizes</li>
+                    <li>✓ Touch & mouse support</li>
+                    <li>✓ Save as photo</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openActivityModal('drawing', 3)">
+                    <i class="fas fa-paint-brush"></i> Start Drawing
+                </button>
+            </div>
+
+            <!-- Quiz -->
+            <div class="demo-card">
+                <div class="demo-icon">📚</div>
+                <h3>Interactive Quiz</h3>
+                <p>Test knowledge with fun questions</p>
+                <ul class="feature-list">
+                    <li>✓ Multiple choice</li>
+                    <li>✓ Instant feedback</li>
+                    <li>✓ Educational content</li>
+                    <li>✓ Confetti rewards</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openActivityModal('quiz', 12)">
+                    <i class="fas fa-question-circle"></i> Take Quiz
+                </button>
+            </div>
+
+            <!-- Memory Game -->
+            <div class="demo-card">
+                <div class="demo-icon">🧩</div>
+                <h3>Memory Match Game</h3>
+                <p>Islamic emoji matching challenge</p>
+                <ul class="feature-list">
+                    <li>✓ 16 cards (8 pairs)</li>
+                    <li>✓ Flip animations</li>
+                    <li>✓ Match counter</li>
+                    <li>✓ Victory celebration</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openActivityModal('memory', 0)">
+                    <i class="fas fa-puzzle-piece"></i> Play Game
+                </button>
+            </div>
+
+            <!-- Dua Recorder -->
+            <div class="demo-card">
+                <div class="demo-icon">🎤</div>
+                <h3>Dua Recorder</h3>
+                <p>Record and save dua recitations</p>
+                <ul class="feature-list">
+                    <li>✓ Audio recording</li>
+                    <li>✓ Live visualizer</li>
+                    <li>✓ Playback controls</li>
+                    <li>✓ Save recordings</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openActivityModal('dua-recorder', 6)">
+                    <i class="fas fa-microphone"></i> Record Dua
+                </button>
+            </div>
+
+            <!-- Checklist -->
+            <div class="demo-card">
+                <div class="demo-icon">✅</div>
+                <h3>Interactive Checklist</h3>
+                <p>Track multiple tasks in one quest</p>
+                <ul class="feature-list">
+                    <li>✓ Tap to check items</li>
+                    <li>✓ Progress tracking</li>
+                    <li>✓ Animated checks</li>
+                    <li>✓ Completion rewards</li>
+                </ul>
+                <button class="btn btn-primary" onclick="openActivityModal('checklist', 24)">
+                    <i class="fas fa-tasks"></i> View Checklist
+                </button>
+            </div>
+
+            <!-- Confetti Demo -->
+            <div class="demo-card">
+                <div class="demo-icon">🎉</div>
+                <h3>Celebration Effects</h3>
+                <p>Confetti and animations</p>
+                <ul class="feature-list">
+                    <li>✓ Confetti burst</li>
+                    <li>✓ Sparkle effects</li>
+                    <li>✓ Success sounds</li>
+                    <li>✓ Badge animations</li>
+                </ul>
+                <button class="btn btn-primary" onclick="createConfetti()">
+                    <i class="fas fa-star"></i> Trigger Confetti
+                </button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <h2 style="font-family: 'Fredoka One', cursive; color: #00a896; margin-bottom: 20px;">
+                🌟 All Features Work on Mobile Too!
+            </h2>
+            <p style="font-size: 1.1rem; color: #1d3557; margin-bottom: 30px;">
+                Every interactive feature is optimized for touch screens and mobile devices.
+            </p>
+            <a href="index.html" class="btn btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Go to Full App
+            </a>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Modals -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content photo-modal">
+            <button class="modal-close" onclick="closePhotoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="photo-upload-container">
+                <h2>📸 Upload Quest Proof</h2>
+                <p>Show us how you completed this quest!</p>
+                
+                <div class="upload-options">
+                    <button class="btn btn-primary" onclick="triggerCamera()">
+                        <i class="fas fa-camera"></i> Take Photo
+                    </button>
+                    <button class="btn btn-secondary" onclick="triggerGallery()">
+                        <i class="fas fa-images"></i> Choose from Gallery
+                    </button>
+                </div>
+                
+                <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;" onchange="handlePhotoUpload(event)">
+                <input type="file" id="galleryInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                
+                <div id="photoPreview" class="photo-preview" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                    <div class="photo-actions">
+                        <button class="btn btn-primary" onclick="demoSavePhoto()">
+                            <i class="fas fa-check"></i> Save Demo Photo
+                        </button>
+                        <button class="btn btn-secondary" onclick="retakePhoto()">
+                            <i class="fas fa-redo"></i> Retake
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="skip-photo">
+                    <button class="btn btn-text" onclick="closePhotoModal()">
+                        Close Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="galleryModal">
+        <div class="modal-content gallery-modal">
+            <button class="modal-close" onclick="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="gallery-container">
+                <h2>📷 Your Quest Photos</h2>
+                <div id="photoGalleryGrid" class="photo-gallery-grid">
+                    <div class="gallery-empty">
+                        <i class="fas fa-camera"></i>
+                        <p>This is where your quest photos will appear!<br>Complete quests in the main app to see photos here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="activityModal">
+        <div class="modal-content activity-modal">
+            <button class="modal-close" onclick="closeActivityModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="activityContent" class="activity-content"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/quests-data.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/interactive-features.js"></script>
+    
+    <script>
+        // Demo-specific functions
+        function demoSavePhoto() {
+            alert('✅ Photo saved! (Demo Mode)\n\nIn the real app, this photo would be saved to your quest gallery and linked to the specific quest.');
+            createConfetti();
+            closePhotoModal();
+        }
+        
+        // Mock app object for demo
+        if (typeof app === 'undefined') {
+            window.app = {
+                currentDay: 1,
+                showNotification: function(message, type) {
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 100px;
+                        right: 20px;
+                        background: ${type === 'success' ? '#4caf50' : '#00a896'};
+                        color: white;
+                        padding: 1rem 1.5rem;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        z-index: 10000;
+                        animation: slideInRight 0.3s ease;
+                        max-width: 300px;
+                    `;
+                    notification.textContent = message;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
+                }
+            };
+        }
+    </script>
+</body>
+</html>

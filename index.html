@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Akhlaq and Imaan Garden - 30 days of fun Islamic learning for kids aged 6-9. Join the adventure!">
+    <meta name="theme-color" content="#00a896">
+    <title>Akhlaq and Imaan Garden - 30 Days of Adventure!</title>
+    
+    <!-- PWA Configuration -->
+    <!-- <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"> -->
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/interactive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="footer-logo-link" aria-label="Akhlaq and Imaan Garden home">
+                    <img src="images/Jr. Logo.png"  alt="Akhlaq and Imaan Garden logo" class="nav-logo-img" width="250" height="auto" loading="lazy">
+                </a>
+                <span class="nav-title">Akhlaq and Imaan Garden</span>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#quests" class="nav-link">Quests</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li><a href="#achievements" class="nav-link">Badges</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#parent" class="nav-link">Parents</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="stars"></div>
+            <div class="islamic-pattern"></div>
+        </div>
+        <div class="hero-content">
+            <div class="crescent-moon-animation">
+                <div class="moon m">🌙</div>
+                <div class="sparkles">
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">⭐</span>
+                    <span class="sparkle">⭐</span>
+                </div>
+            </div>
+            <h1 class="hero-title">Welcome to<br>Akhlaq and Imaan Garden!</h1>
+            <p class="hero-subtitle">30 Days of Amazing Adventures 🚀</p>
+            <p class="hero-description">Join us for daily Islamic challenges, fun activities, and exciting rewards! Designed for kids aged 6-9.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">30</span>
+                    <span class="stat-label">Daily Quests</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Badges</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Rewards</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-large" id="startQuestBtn">
+                <i class="fas fa-rocket"></i> Start Your Quest!
+            </button>
+            
+            <div class="ramadan-countdown" id="ramadanCountdown">
+                <p class="countdown-label">Ramadan starts in:</p>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">00</span>
+                        <span class="countdown-unit">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-unit">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-unit">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-unit">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="interactive-demo" class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Demo ✨</h2>
+            <p class="section-subtitle">Try a short sample of the activities — perfect for previewing how the quests feel.</p>
+            <div class="demo-cta-wrap">
+                <button class="btn btn-primary" id="openDemoFullBtn">
+                    <i class="fas fa-external-link-alt"></i> Open Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Modal -->
+    <div class="modal" id="demoModal" aria-hidden="true">
+        <div class="modal-content demo-modal">
+            <button class="modal-close" onclick="closeDemoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="demo-iframe-wrap">
+                <iframe id="demoIframe" src="" frameborder="0" loading="lazy" title="Interactive demo" width="100%" height="640"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Quest Section -->
+    <section class="current-quest-section">
+        <div class="container">
+            <h2 class="section-title">Today's Quest 🎯</h2>
+            <div class="current-quest-card" id="currentQuestCard">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Quests Section -->
+    <section id="quests" class="quests-section">
+        <div class="container">
+            <h2 class="section-title">30-Day Quest Calendar 📅</h2>
+            <p class="section-subtitle">Complete daily challenges and earn amazing rewards!</p>
+            
+            <div class="week-tabs">
+                <button class="week-tab active" data-week="1">Week 1</button>
+                <button class="week-tab" data-week="2">Week 2</button>
+                <button class="week-tab" data-week="3">Week 3</button>
+                <button class="week-tab" data-week="4">Week 4</button>
+            </div>
+            
+            <div class="quests-grid" id="questsGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section id="progress" class="progress-section">
+        <div class="container">
+            <h2 class="section-title">Your Progress 📊</h2>
+            
+            <div class="progress-dashboard">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h3>Overall Progress</h3>
+                        <span class="progress-percentage" id="overallPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="overallProgressBar" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text"><span id="completedQuests">0</span> of 30 Quests Completed</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <h4>Total Points</h4>
+                            <p class="stat-value" id="totalPoints">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-content">
+                            <h4>Current Streak</h4>
+                            <p class="stat-value"><span id="currentStreak">0</span> days</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-content">
+                            <h4>Badges Earned</h4>
+                            <p class="stat-value"><span id="badgesEarned">0</span> of 5</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h4>Days Active</h4>
+                            <p class="stat-value" id="daysActive">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements-section">
+        <div class="container">
+            <h2 class="section-title">Badge Collection 🏆</h2>
+            <p class="section-subtitle">Earn special badges by completing quests!</p>
+            
+            <div class="badges-grid" id="badgesGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Quest Photo Album 📷</h2>
+            <p class="section-subtitle">View all the amazing quests you've completed!</p>
+            
+            <div class="gallery-stats">
+                <div class="gallery-stat">
+                    <span class="stat-number" id="totalPhotos">0</span>
+                    <span class="stat-label">Photos</span>
+                </div>
+                <div class="gallery-stat">
+                    <span class="stat-number" id="questsWithPhotos">0</span>
+                    <span class="stat-label">Quests with Proof</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-large" onclick="openGalleryModal()">
+                <i class="fas fa-images"></i> View Full Gallery
+            </button>
+            
+            <div id="recentPhotos" class="recent-photos-grid">
+                <!-- Recent 6 photos -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <h2 class="section-title">Free Resources 📚</h2>
+            <p class="section-subtitle">Download printables, guides, and more!</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <h3>Quest Tracker</h3>
+                    <p>Printable checklist for all 30 days</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('quest-tracker')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎨</div>
+                    <h3>Crescent & Stars Craft</h3>
+                    <p>Fun craft template for Day 3</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('crescent-craft')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📖</div>
+                    <h3>Gratitude Journal</h3>
+                    <p>Daily thankfulness pages</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('gratitude-journal')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🤲</div>
+                    <h3>Dua List Template</h3>
+                    <p>Write your special Laylatul Qadr duas</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('dua-list')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">✅</div>
+                    <h3>Worship Checklist</h3>
+                    <p>Laylatul Qadr activities tracker</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('worship-checklist')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <h3>Achievement Certificate</h3>
+                    <p>Celebrate completing all 30 days!</p>
+                    <button class="btn btn-secondary" onclick="downloadResource('certificate')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Dashboard Section -->
+    <section id="parent" class="parent-section">
+        <div class="container">
+            <h2 class="section-title">Parent Dashboard 👨‍👩‍👧‍👦</h2>
+            <p class="section-subtitle">Monitor your child's progress and customize settings</p>
+            
+            <div class="parent-dashboard">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-chart-line"></i> Progress Overview</h3>
+                    <div class="parent-stats">
+                        <div class="parent-stat">
+                            <strong>Quests Completed:</strong>
+                            <span id="parentCompletedQuests">0/30</span>
+                        </div>
+                        <div class="parent-stat">
+                            <strong>Success Rate:</strong>
+                            <span id="successRate">0%</span>
+                        </div>
+                        <div class="parent-stat">
+                            <strong>Favorite Category:</strong>
+                            <span id="favoriteCategory">-</span>
+                        </div>
+                        <div class="parent-stat">
+                            <strong>Longest Streak:</strong>
+                            <span id="longestStreak">0 days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-bell"></i> Notification Settings</h3>
+                    <div class="settings-form">
+                        <div class="setting-item">
+                            <label for="notificationToggle">Daily Quest Reminders</label>
+                            <label class="toggle-switch" aria-label="Toggle daily reminders">
+                                <input type="checkbox" id="notificationToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label for="notificationTime">Reminder Time</label>
+                            <select id="notificationTime" class="form-select">
+                                <option value="6">6:00 AM (Before Suhoor)</option>
+                                <option value="17" selected>5:00 PM (Before Iftar)</option>
+                                <option value="20">8:00 PM (Evening)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-share-alt"></i> Share Progress</h3>
+                    <p>Share your child's achievements on social media!</p>
+                    <div class="share-buttons">
+                        <button class="btn btn-social btn-facebook" onclick="shareProgress('facebook')">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </button>
+                        <button class="btn btn-social btn-twitter" onclick="shareProgress('twitter')">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="btn btn-social btn-instagram" onclick="shareProgress('instagram')">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="btn btn-social btn-whatsapp" onclick="shareProgress('whatsapp')">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-download"></i> Export Data</h3>
+                    <p>Download a complete report of your child's Ramadan journey</p>
+                    <button class="btn btn-primary" onclick="printPageToPDF()">
+                        <i class="fas fa-file-download"></i> Download Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quest Detail Modal -->
+    <div class="modal" id="questModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeQuestModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="questModalContent">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Upload Modal -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content photo-modal">
+            <button class="modal-close" onclick="closePhotoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="photo-upload-container">
+                <h2>📸 Upload Quest Proof</h2>
+                <p>Show us how you completed this quest!</p>
+                
+                <div class="upload-options">
+                    <button class="btn btn-primary" onclick="triggerCamera()">
+                        <i class="fas fa-camera"></i> Take Photo
+                    </button>
+                    <button class="btn btn-secondary" onclick="triggerGallery()">
+                        <i class="fas fa-images"></i> Choose from Gallery
+                    </button>
+                </div>
+                
+                <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;" onchange="handlePhotoUpload(event)">
+                <input type="file" id="galleryInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                
+                <div id="photoPreview" class="photo-preview" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                    <div class="photo-actions">
+                        <button class="btn btn-primary" onclick="saveQuestPhoto()">
+                            <i class="fas fa-check"></i> Save & Complete Quest
+                        </button>
+                        <button class="btn btn-secondary" onclick="retakePhoto()">
+                            <i class="fas fa-redo"></i> Retake
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="skip-photo">
+                    <button class="btn btn-text" onclick="skipPhotoUpload()">
+                        Skip photo and complete quest
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Gallery Modal -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content gallery-modal">
+            <button class="modal-close" onclick="closeGalleryModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="gallery-container">
+                <h2>📷 Your Quest Photos</h2>
+                <div id="photoGalleryGrid" class="photo-gallery-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Activity Modal -->
+    <div class="modal" id="activityModal">
+        <div class="modal-content activity-modal">
+            <button class="modal-close" onclick="closeActivityModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="activityContent" class="activity-content">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <!-- <span class="moon-icon">🌙</span> -->
+                    <!-- <span class="footer-icon" aria-hidden="true">🪵</span> -->
+                    <img src="images/Jr. Logo.png" srcset="images/logo-footer@2x.png 2x" alt="Ramadan Family Quests logo" class="footer-logo-img" width="100" height="100" loading="lazy">
+                    <!-- <a href="#home" class="footer-logo-link" aria-label="Ramadan Family Quests home">
+                    </a> -->
+                    <span>Ramadan Family Quests</span>
+                </div>
+                <p class="footer-text">Slogan: Rooted in Islam, Growing with Imaan, Ready for Tomorrow</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#quests">Quests</a>
+                    <a href="#achievements">Badges</a>
+                    <a href="#resources">Resources</a>
+                    <a href="#parent">Parents</a>
+                </div>
+                <p class="footer-copyright">
+                    © 2026 MAC Youth Juniors. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/quests-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/interactive-features.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <!-- <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('js/service-worker.js')
+                    .then(registration => console.log('Service Worker registered'))
+                    .catch(error => console.log('Service Worker registration failed:', error));
+            });
+        }
+    </script> -->
+</body>
+</html>
