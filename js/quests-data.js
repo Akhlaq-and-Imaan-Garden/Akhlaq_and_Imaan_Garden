@@ -30,8 +30,8 @@ const questsData = [
         category: "Creative Activities",
         description: "Ramadan has 6 special stars! Each star represents a blessing of this month.",
         quest: "Create your own Ramadan stars chart!",
-        howToComplete: "Download the craft template from Resources, color the 6 stars (Quran revealed, Laylatul Qadr, Forgiveness, Doors of Jannah open, Victory of Badr, Unity), and stick them on your crescent moon!",
-        parentTip: "Help your child understand each blessing as they color. This is a great learning activity!",
+        howToComplete: "Make six stars from colored paper, cardboard, or draw them on a sheet. Color each star and write one blessing on each (Quran revealed, Laylatul Qadr, Forgiveness, Doors of Jannah open, Victory of Badr, Unity). Cut them out and stick them onto a paper crescent moon or hang them as a garland.",
+        parentTip: "Use simple household supplies (paper, crayons, tape, glue). Turn the craft into a conversation: ask your child what each blessing means as they decorate their stars.",
         points: 10,
         emoji: "⭐",
         week: 1
@@ -151,7 +151,7 @@ const questsData = [
         description: "Alhamdulillah for everything! Let's count our blessings!",
         quest: "List 5 things you're grateful for today",
         howToComplete: "Write or draw 5 things you're thankful for. Start with: I'm grateful for...",
-        parentTip: "Download the Gratitude Journal from Resources. This is a beautiful daily practice!",
+        parentTip: "Use a notebook or create a simple gratitude journal with paper or a notes app. This is a beautiful daily practice!",
         points: 10,
         emoji: "❤️",
         week: 2
@@ -258,8 +258,8 @@ const questsData = [
         category: "Faith & Worship",
         description: "Laylatul Qadr is coming! Let's prepare our special duas!",
         quest: "Write down your duas for Laylatul Qadr",
-        howToComplete: "Download the Dua List template and write what you want to ask Allah for!",
-        parentTip: "Help your child think about meaningful duas: family, health, Jannah, forgiveness, etc.",
+        howToComplete: "Use a notebook, a sheet of paper, or your phone to write your duas. Keep them short and specific (family, health, forgiveness, hopes, .....).",
+        parentTip: "Help your child think of meaningful duas and write them down. Decorate the paper or keep the list in a special notebook.",
         points: 10,
         emoji: "📝",
         week: 4
@@ -283,7 +283,7 @@ const questsData = [
         description: "Today's quest: Do as many good deeds as possible!",
         quest: "Complete as many worship acts as you can today!",
         howToComplete: "Check off: Read Quran ✓ Make Dhikr ✓ Give Sadaqah ✓ Pray Salah ✓ Make Dua ✓",
-        parentTip: "Download the Worship Checklist from Resources. Make it a fun family challenge!",
+        parentTip: "Use a simple paper checklist or a shared notes app to track deeds. Make it a fun family challenge!",
         points: 10,
         emoji: "🏃",
         week: 4
@@ -355,7 +355,7 @@ const questsData = [
         description: "WE DID IT! 30 DAYS OF AMAZING QUESTS! You are INCREDIBLE!",
         quest: "Prepare for Eid celebration tomorrow!",
         howToComplete: "Lay out your Eid clothes, help decorate, prepare for tomorrow's celebration! ALLAHU AKBAR!",
-        parentTip: "Celebrate this achievement! Download the Achievement Certificate and celebrate your champion!",
+        parentTip: "Celebrate this achievement! Make a handmade certificate with paper and markers or create one using a simple template in a notes or design app.",
         points: 10,
         emoji: "🎊",
         week: 4

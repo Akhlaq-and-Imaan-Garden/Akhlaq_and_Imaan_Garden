@@ -1,8 +1,3 @@
-/* ===================================
-   Interactive Features Styling
-   Photo Upload, Activities, Gallery
-   =================================== */
-
 /* ===== Demo Section & Modal ===== */
 .demo-section {
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(250,250,250,0.02));
@@ -156,6 +151,7 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
+    padding: 10px;
 }
 
 /* Thumbnail card */
@@ -171,8 +167,9 @@
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* مهم: قصّ الصورة بشكل جميل */
+  object-fit: cover;    
   display: block;
+  padding: 10px;
 }
 
 /* Delete button */

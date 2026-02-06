@@ -70,6 +70,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     line-height: 1.2;
+    padding: 20px;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -164,6 +165,7 @@ section {
     font-weight: 600;
     transition: var(--transition-fast);
     border-radius: var(--radius-sm);
+    white-space: nowrap;
 }
 
 .nav-link:hover,

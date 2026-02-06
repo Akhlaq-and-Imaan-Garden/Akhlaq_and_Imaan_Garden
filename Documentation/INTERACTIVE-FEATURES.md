@@ -469,7 +469,6 @@ getQuestPhotos()                 // Get all photos array
 updatePhotoGallery()             // Refresh gallery display
 openGalleryModal()               // Open full gallery
 sharePhoto(index)                // Share specific photo
-downloadPhoto(index)             // Download photo
 ```
 
 ### **Activity Functions:**

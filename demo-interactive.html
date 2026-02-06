@@ -67,7 +67,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container" style="justify-content: space-between; padding: 20px;">
             <div class="nav-logo">
                 <!-- <span class="moon-icon">🌙</span> -->
                 <a href="index.html" class="footer-logo-link" aria-label="Akhlaq and Imaan Garden home">
@@ -81,13 +81,13 @@
 
     <div class="demo-container">
         <div class="demo-header">
-            <h1>🎮 Interactive Features Demo</h1>
+            <h1>✨ Interactive Features Demo</h1>
             <p style="font-size: 1.2rem; color: #6a4c93;">Click any feature below to try it out!</p>
         </div>
 
         <div class="demo-grid">
             <!-- Photo Upload -->
-            <div class="demo-card">
+            <!-- <div class="demo-card">
                 <div class="demo-icon">📸</div>
                 <h3>Photo Proof System</h3>
                 <p>Upload photos as quest completion proof</p>
@@ -100,7 +100,7 @@
                 <button class="btn btn-primary" onclick="openPhotoUploadModal(1)">
                     <i class="fas fa-camera"></i> Try Photo Upload
                 </button>
-            </div>
+            </div> -->
 
             <!-- Gallery -->
             <div class="demo-card">
@@ -145,7 +145,7 @@
                     <li>✓ Educational content</li>
                     <li>✓ Confetti rewards</li>
                 </ul>
-                <button class="btn btn-primary" onclick="openActivityModal('quiz', 12)">
+                <button class="btn btn-primary" onclick="openActivityModal('quiz', currentQuestDay)">
                     <i class="fas fa-question-circle"></i> Take Quiz
                 </button>
             </div>
@@ -177,9 +177,10 @@
                     <li>✓ Playback controls</li>
                     <li>✓ Save recordings</li>
                 </ul>
-                <button class="btn btn-primary" onclick="openActivityModal('dua-recorder', 6)">
+                <button class="btn btn-primary" onclick="openActivityModal('dua-recorder', currentQuestDay)">
                     <i class="fas fa-microphone"></i> Record Dua
                 </button>
+
             </div>
 
             <!-- Checklist -->
@@ -193,7 +194,7 @@
                     <li>✓ Animated checks</li>
                     <li>✓ Completion rewards</li>
                 </ul>
-                <button class="btn btn-primary" onclick="openActivityModal('checklist', 24)">
+                <button class="btn btn-primary" onclick="openActivityModal('checklist', currentQuestDay)">
                     <i class="fas fa-tasks"></i> View Checklist
                 </button>
             </div>
