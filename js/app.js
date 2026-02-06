@@ -892,10 +892,42 @@ window.captureProgressSectionBlob = async function () {
   return new Promise(resolve => canvas.toBlob(resolve, 'image/png', 1));
 };
 
+// Open a prefilled email draft in Gmail web compose
+function openPrefilledEmailDraft() {
+  const to = ""; // optional: "parent@example.com"
+  const subject = encodeURIComponent("Ramadan Progress Report");
+  const body = encodeURIComponent(
+   `Assalamu alaikum,
+    I hope you’re doing well and having a blessed Ramadan so far.  
+    I wanted to share my child’s progress with you.
+    Please find the Ramadan progress report attached.
+    JazakAllahu khair for your support and encouragement! 
+    `
+    );
 
+  // Gmail web compose (best UX on desktop)
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${subject}&body=${body}`;
+  window.open(gmailUrl, "_blank");
+}
+
+async function downloadAndEmailReport() {
+  
+  await printPageToPDF(); 
+
+  // 2) Open a prefilled email draft
+  openPrefilledEmailDraft();
+
+  // 3) Optional: show a friendly hint
+  app?.showNotification?.("Email draft opened. Attach the downloaded report file 🙂", "success");
+}
+
+
+// Download the page as PDF
 function printPageToPDF() {
     window.print();
 }
+
+
 
 // Add CSS animations for notifications
 const style = document.createElement('style');

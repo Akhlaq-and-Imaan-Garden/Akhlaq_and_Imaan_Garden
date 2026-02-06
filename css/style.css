@@ -102,6 +102,29 @@ section {
     padding: var(--spacing-xl) 0;
 }
 
+/* ===== PDF Export Mode ===== */
+/* .pdf-export-mode * {
+  animation: none !important;
+  transition: none !important;
+} */
+
+/* .pdf-export-mode #progress,
+.pdf-export-mode #progress * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+} */
+
+/* If you use a "hidden" class */
+/* .pdf-export-mode .hidden {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+} */
+
+
+
 /* ===== Navigation ===== */
 .navbar {
     position: fixed;
@@ -1260,7 +1283,7 @@ input:checked + .toggle-slider::before {
 
 @media (max-width: 480px) {
     .nav-logo .nav-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .hero-title {
@@ -1283,32 +1306,63 @@ input:checked + .toggle-slider::before {
     .quest-detail {
         padding: var(--spacing-md);
     }
-}
-
-/* ===== Print Styles ===== */
-/* @media print {
-    .navbar,
-    .scroll-indicator,
-    .hero-bg,
-    .modal,
-    .footer {
-        display: none;
+    
+    /* Center all containers and prevent overflow */
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+        margin: auto;
+        overflow-x: hidden;
     }
     
     body {
-        background: white;
+        overflow-x: hidden;
     }
     
-    .quest-card,
-    .badge-card,
-    .stat-card {
-        break-inside: avoid;
+    section {
+        overflow-x: hidden;
     }
-} */
+    
+    .quests-grid,
+    .badges-grid,
+    .resources-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+        padding: 0 var(--spacing-xs);
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        padding: var(--spacing-sm);
+        word-wrap: break-word;
+    }
+}
 
-
+/* ===== Print Styles ===== */
 @media print {
-  * {
+    * {
     overflow: visible !important;
   }
+
+  /* ✅ Show these sections in print */
+  #quests, #quests * {
+    visibility: visible !important;
+  }
+
+  /* ✅ Fix animation-hidden elements */
+  #quests *, .stat-card,.badge-card,.badges-grid {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+.navbar {
+    position: static;
+    display: none;
+}
+
+.navbar:first-of-type {
+    display: block;
+}
 }

@@ -20,7 +20,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/interactive.css">
-    <link rel="icon" href="images/Jr. Logo.png" type="image/x-icon">
+    <link rel="icon" href="images/Jr-Logo.png" type="image/x-icon">
 </head>
 <body>
     <!-- Navigation -->
@@ -28,7 +28,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="#home" class="footer-logo-link" aria-label="Akhlaq and Imaan Garden home">
-                    <img src="images/Jr. Logo.png"  alt="Akhlaq and Imaan Garden logo" class="nav-logo-img" width="250" height="auto" loading="lazy">
+                    <img src="images/Jr-Logo.png"  alt="Akhlaq and Imaan Garden logo" class="nav-logo-img" width="250" height="auto" loading="lazy">
                 </a>
                 <span class="nav-title">Akhlaq and Imaan Garden</span>
             </div>
@@ -340,11 +340,18 @@
                 
                 <div class="dashboard-card">
                     <h3><i class="fas fa-download"></i> Export Data</h3>
-                    <p>Download a complete report of your child's Ramadan journey</p>
-                    <button class="btn btn-primary" onclick="printPageToPDF()">
-                        <i class="fas fa-file-download"></i> Download Report
-                    </button>
+                    <h4>Download a complete report of your child's Ramadan journey</h4>
+                    <div class="export-buttons">
+                        <button class="btn btn-primary" onclick="printPageToPDF()">
+                            <i class="fas fa-file-download"></i> Download Report
+                        </button>
+                        <button class="btn btn-primary" onclick="downloadAndEmailReport()" style="margin-top: 10px;">
+                            <i class="fas fa-envelope"></i> Send by Email
+                        </button>
+                    </div>
                 </div>
+                
+
             </div>
         </div>
     </section>
@@ -436,10 +443,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/Jr. Logo.png" srcset="images/logo-footer@2x.png 2x" alt="Akhlaq and Imaan Garden logo" class="footer-logo-img" width="100" height="100" loading="lazy">
+                    <img src="images/Jr-Logo.png" alt="Akhlaq and Imaan Garden logo" class="footer-logo-img" width="100"  loading="lazy">
                     <span>Akhlaq and Imaan Garden</span>
                 </div>
-                <p class="footer-text">Slogan: Rooted in Islam, Growing with Imaan, Ready for Tomorrow</p>
+                <p class="footer-text">Rooted in Islam, Growing with Imaan, Ready for Tomorrow</p>
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#interactive-demo">Interactive Demo</a>
@@ -460,7 +467,7 @@
 
     <!-- Scripts -->
     <script src="js/quests-data.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/interactive-features.js"></script>

@@ -120,14 +120,22 @@ function handlePhotoUpload(event) {
   const file = event.target.files?.[0];
   if (!file) return;
 
+  // ❌ BLOCK non-image files (PDF, etc.)
+  if (!file.type.startsWith("image/")) {
+    app?.showNotification?.("Please select an image file only 🖼️", "warning");
+    event.target.value = ""; // reset input
+    return;
+  }
+
   currentPhotoFile = file;
 
-  // preview
-  const img = document.getElementById('previewImage');
+  // ✅ preview
+  const img = document.getElementById("previewImage");
   img.src = URL.createObjectURL(file);
 
-  document.getElementById('photoPreview').style.display = 'block';
+  document.getElementById("photoPreview").style.display = "block";
 }
+
 
 function retakePhoto() {
   document.getElementById('photoPreview').style.display = 'none';
@@ -171,8 +179,8 @@ function skipPhotoUpload() {
   closePhotoModal();
 }
 
-// ===== Photo Gallery System =====
 
+// ===== Photo Gallery System =====
 async function getQuestPhotos() {
   const photos = await idbGetAllPhotos();
 
@@ -207,6 +215,8 @@ async function getQuestPhotos() {
       };
     })
     .filter(p => p.photo); // remove broken ones
+
+
 }
 
 
@@ -230,6 +240,8 @@ async function openGalleryModal() {
     
     modal.classList.add('active');
 }
+
+
 
 function closeGalleryModal() {
     document.getElementById('galleryModal').classList.remove('active');
@@ -538,6 +550,8 @@ let isEraser = false;
 let canvas, ctx, isDrawing = false;
 let currentColor = '#000000';
 let currentSize = 4;
+
+
 
 function createDrawingActivity() {
     return `
@@ -1328,10 +1342,7 @@ function checkMatch() {
 }
 
 
-// ===============================
 // DUA RECORDER (FIXED + IDB SAVE)
-// ===============================
-
 let mediaRecorder;
 let audioChunks = [];
 let lastDuaBlob = null; // ✅ holds the last recorded audio file (Blob)
@@ -1562,88 +1573,7 @@ async function renderSavedDuas() {
 }
 
 
-
-// ===== Interactive Checklist =====
-
-// function createInteractiveChecklist(questDay) {
-//     const checklists = {
-//         24: [
-//             'Read Quran for 10 minutes',
-//             'Pray all 5 prayers on time',
-//             'Make Dhikr (SubhanAllah 33x)',
-//             'Give Sadaqah',
-//             'Make Dua for family'
-//         ]
-//     };
-    
-//     const items = checklists[questDay] || checklists[24];
-    
-//     return `
-//         <div class="activity-header">
-//             <h2>✅ Quest Checklist</h2>
-//             <p>Complete all items to finish the quest!</p>
-//         </div>
-//         <div class="interactive-checklist">
-//             ${items.map((item, index) => `
-//                 <div class="checklist-item" onclick="toggleChecklistItem(this)">
-//                     <div class="checklist-checkbox">
-//                         <i class="fas fa-check"></i>
-//                     </div>
-//                     <span>${item}</span>
-//                 </div>
-//             `).join('')}
-//             <div class="checklist-progress">
-//                 <p>Progress: <span id="checklistCount">0</span>/${items.length}</p>
-//                 <div class="checklist-progress-bar">
-//                     <div id="checklistFill" class="checklist-progress-fill" style="width: 0%;"></div>
-//                 </div>
-//             </div>
-//         </div>
-//         <button class="btn btn-primary btn-large" onclick="completeChecklist()" style="margin-top: 20px; width: 100%;">
-//             <i class="fas fa-check-circle"></i> Complete Quest
-//         </button>
-//     `;
-// }
-
-// function initializeChecklist() {
-//     // Checklist is initialized in HTML
-// }
-
-// function toggleChecklistItem(item) {
-//     item.classList.toggle('completed');
-//     updateChecklistProgress();
-// }
-
-// function updateChecklistProgress() {
-//     const items = document.querySelectorAll('.checklist-item');
-//     const completed = document.querySelectorAll('.checklist-item.completed').length;
-//     const total = items.length;
-//     const percentage = (completed / total) * 100;
-    
-//     document.getElementById('checklistCount').textContent = completed;
-//     document.getElementById('checklistFill').style.width = percentage + '%';
-    
-//     if (completed === total) {
-//         createConfetti();
-//     }
-// }
-
-// function completeChecklist() {
-//     const completed = document.querySelectorAll('.checklist-item.completed').length;
-//     const total = document.querySelectorAll('.checklist-item').length;
-    
-//     if (completed === total) {
-//         closeActivityModal();
-//         app.showNotification('✅ All tasks completed! Great job!', 'success');
-//     } else {
-//         app.showNotification(`Complete all ${total} items first! (${completed}/${total} done)`, 'warning');
-//     }
-// }
-
-
-// ✅ CHECKLIST (30 DAYS + PERSISTENCE)
-
-//1) 30 checklists based on questsData 
+// 1)CHECKLIST (30 DAYS + PERSISTENCE)
 function getChecklistItemsForDay(questDay) {
   const day = Number(questDay);
 
