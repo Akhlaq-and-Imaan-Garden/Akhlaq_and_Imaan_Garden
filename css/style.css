@@ -942,6 +942,13 @@ section {
     padding: var(--spacing-sm);
     background: var(--background-color);
     border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+
+}
+
+.parent-stat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .settings-form {

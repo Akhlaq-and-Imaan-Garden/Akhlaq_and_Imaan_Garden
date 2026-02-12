@@ -285,7 +285,7 @@ class RamadanQuestsApp {
                 </div>
 
                 ${!isLocked ? `
-                    <button class="complete-quest-btn"  onclick="app.startQuestCompletion(${quest.day})" 
+                    <button class="complete-quest-btn"  onclick="app.completeQuest(${quest.day})" 
                             ${isCompleted ? 'disabled' : ''}>
                         ${isCompleted ? '✅ Quest Completed!' : '🎯 Mark as Complete'}
                     </button>
@@ -631,12 +631,8 @@ class RamadanQuestsApp {
         }
     }
 
-    startQuestCompletion(day) {
-        currentQuestForPhoto = Number(day);
-        currentPhotoFile = null;
-        openPhotoUploadModal(currentQuestForPhoto);
-        }
     }
+
 
  // Global functions for inline onclick handlers
 function closeQuestModal() {
@@ -646,6 +642,7 @@ function closeQuestModal() {
   const modal = document.getElementById('questModal');
   if (modal) modal.classList.remove('active');
 }
+
 
 // Ensure the Ramadan countdown element is visible
 function showRamadanCountdown(options = {}) {
@@ -672,264 +669,6 @@ function showRamadanCountdown(options = {}) {
 }
 
 
-function isMobileDevice() {
-  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-}
-
-
-function showShareHint(message, duration = 2000) {
-  const hint = document.createElement('div');
-
-  hint.innerHTML = message.replace(/\n/g, '<br>');
-
-  hint.style.cssText = `
-    position: fixed;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ffffff;
-    color: #111;
-    padding: 22px 28px;
-    border-radius: 18px;
-    font-size: 16px;
-    line-height: 1.7;
-    z-index: 9999;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.22);
-    max-width: 92%;
-    min-width: 320px;
-    width: auto;
-    text-align: left;
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    pointer-events: none;
-  `;
-
-  document.body.appendChild(hint);
-
-  // fade + slight drop in
-  requestAnimationFrame(() => {
-    hint.style.opacity = '1';
-    hint.style.transform = 'translateX(-50%) translateY(0)';
-  });
-
-  // fade out
-  setTimeout(() => {
-    hint.style.opacity = '0';
-    hint.style.transform = 'translateX(-50%) translateY(-8px)';
-    setTimeout(() => hint.remove(), 300);
-  }, duration);
-}
-
-
-async function shareProgress(platform) {
-  const completed = app.userProgress.completedQuests.length;
-  const message = `Alhamdulillah 🌟 I've completed ${completed} Ramadan quests so far. One step closer every day.`;
-  const p = platform.toLowerCase();
-
-  let blob;
-  try {
-    blob = await captureProgressSectionBlob();
-  } catch (e) {
-    console.error(e);
-    app.showNotification?.('⚠️ Could not generate progress image.', 'error');
-    return;
-  }
-
-  const fileName = `ramadan-progress-${p}-${completed}-Quests.png`;
-  const file = new File([blob], fileName, { type: 'image/png' });
-
-  /* ================= 📱 MOBILE ================= */
-  if (
-    isMobileDevice() &&
-    navigator.canShare &&
-    navigator.canShare({ files: [file] })
-  ) {
-    try {
-      await navigator.share({
-        title: 'My Ramadan Journey 🌙',
-        text: message,
-        files: [file]
-      });
-      return;
-    } catch {
-      // user cancelled → fallback to desktop flow
-    }
-  }
-
-  /* ================= 🖥️ DESKTOP ================= */
-
-  // 1️⃣ Download image
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = fileName;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-  // 2️⃣ Copy caption
-  try {
-    await navigator.clipboard.writeText(message);
-  } catch {}
-
-  // 3️⃣ Step-by-step tooltip + delayed redirect
-  if (p === 'facebook') {
-    showShareHint(
-      '1️⃣ Image downloaded\n2️⃣ Open Facebook\n3️⃣ Create a post\n4️⃣ Upload the image\n5️⃣ Paste the caption',
-      10000
-    );
-    setTimeout(() => {
-      window.open('https://www.facebook.com/', '_blank');
-    }, 3000);
-    return;
-  }
-
-  if (p === 'instagram') {
-    showShareHint(
-      '1️⃣ Image downloaded\n2️⃣ Open Instagram\n3️⃣ Create a post\n4️⃣ Upload the image\n5️⃣ Paste the caption',
-      10000
-    );
-    setTimeout(() => {
-      window.open('https://www.instagram.com/', '_blank');
-    }, 3000);
-    return;
-  }
-
-  if (p === 'whatsapp') {
-    showShareHint(
-      '1️⃣ Image downloaded\n2️⃣ Open WhatsApp\n3️⃣ Choose a chat\n4️⃣ Attach the image\n5️⃣ Send it',
-      10000
-    );
-    setTimeout(() => {
-      window.open(
-        `https://wa.me/?text=${encodeURIComponent(message)}`,
-        '_blank',
-        'noopener,noreferrer'
-      );
-    }, 3000);
-    return;
-  }
-
-  if (p === 'twitter' || p === 'x') {
-    showShareHint(
-      '1️⃣ Image downloaded\n2️⃣ Create a post\n3️⃣ Attach the image\n4️⃣ Paste the caption\n5️⃣ Post it',
-      10000
-    );
-    setTimeout(() => {
-      window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`,
-        '_blank',
-        'noopener,noreferrer'
-      );
-    }, 3000);
-    return;
-  }
-
-  app.showNotification?.('Platform not supported', 'error');
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (!isMobileDevice()) {
-    document.querySelectorAll('.share-btn').forEach(btn => {
-      const icon = btn.querySelector('i'); // platform icon
-      const iconHTML = icon ? icon.outerHTML : '';
-
-      btn.innerHTML = `
-        <span style="margin-right:3px;"><i class="fas fa-download"></i> Download & Share</span> ${iconHTML}
-      `;
-    });
-  }
-});
-
-// Capture the progress section as a blob using html2canvas
-window.captureProgressSectionBlob = async function () {
-  const container = document.querySelector('#progress .container');
-  if (!container) throw new Error('Progress container not found');
-
-  const wrapper = document.createElement('div');
-  wrapper.style.position = 'absolute';
-  wrapper.style.top = '-9999px';
-  wrapper.style.padding = '40px';
-  wrapper.style.background = '#ffffff';
-
-  const clone = container.cloneNode(true);
-
-  // 1. Reset the clone container itself
-  clone.style.width = container.offsetWidth + 'px';
-  clone.style.height = 'auto';
-  clone.style.opacity = '1';
-  clone.style.visibility = 'visible';
-
-  // 2. FIX THE INVISIBLE CARDS ⚡️
-  // Find all cards that are currently hidden by your animation library
-  const animatedCards = clone.querySelectorAll('.stat-card');
-  animatedCards.forEach(card => {
-    card.style.opacity = '1';
-    card.style.visibility = 'visible';
-    card.style.transform = 'none'; // Remove the "translateY(50px)"
-    card.style.transition = 'none'; // Ensure no fade-in delays
-  });
-
-  wrapper.appendChild(clone);
-  document.body.appendChild(wrapper);
-
-  // Wait for fonts/layout
-  if (document.fonts && document.fonts.ready) {
-    await document.fonts.ready;
-  }
-  await new Promise(r => requestAnimationFrame(r));
-  await new Promise(r => setTimeout(r, 100));
-
-  const canvas = await html2canvas(wrapper, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: '#ffffff'
-  });
-
-  document.body.removeChild(wrapper);
-  return new Promise(resolve => canvas.toBlob(resolve, 'image/png', 1));
-};
-
-// Open a prefilled email draft in Gmail web compose
-function openPrefilledEmailDraft() {
-  const to = ""; // optional: "parent@example.com"
-  const subject = encodeURIComponent("Ramadan Progress Report");
-  const body = encodeURIComponent(
-   `Assalamu alaikum,
-    I hope you’re doing well and having a blessed Ramadan so far.  
-    I wanted to share my child’s progress with you.
-    Please find the Ramadan progress report attached.
-    JazakAllahu khair for your support and encouragement! 
-    `
-    );
-
-  // Gmail web compose (best UX on desktop)
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${subject}&body=${body}`;
-  window.open(gmailUrl, "_blank");
-}
-
-async function downloadAndEmailReport() {
-  
-  await printPageToPDF(); 
-
-  // 2) Open a prefilled email draft
-  openPrefilledEmailDraft();
-
-  // 3) Optional: show a friendly hint
-  app?.showNotification?.("Email draft opened. Attach the downloaded report file 🙂", "success");
-}
-
-
-// Download the page as PDF
-function printPageToPDF() {
-    window.print();
-}
-
-
-
-// Add CSS animations for notifications
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {

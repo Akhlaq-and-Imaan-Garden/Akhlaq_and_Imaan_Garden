@@ -90,38 +90,6 @@
         </div>
 
         <div class="demo-grid">
-            <!-- Photo Upload -->
-            <!-- <div class="demo-card">
-                <div class="demo-icon">📸</div>
-                <h3>Photo Proof System</h3>
-                <p>Upload photos as quest completion proof</p>
-                <ul class="feature-list">
-                    <li>✓ Take photo with camera</li>
-                    <li>✓ Choose from gallery</li>
-                    <li>✓ Preview before saving</li>
-                    <li>✓ Linked to quests</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openPhotoUploadModal(1)">
-                    <i class="fas fa-camera"></i> Try Photo Upload
-                </button>
-            </div> -->
-
-            <!-- Gallery -->
-            <div class="demo-card">
-                <div class="demo-icon">📷</div>
-                <h3>Photo Gallery</h3>
-                <p>View all your quest memories</p>
-                <ul class="feature-list">
-                    <li>✓ Grid layout display</li>
-                    <li>✓ Full-screen viewer</li>
-                    <li>✓ Share photos</li>
-                    <li>✓ Download to device</li>
-                </ul>
-                <button class="btn btn-primary" onclick="openGalleryModal()">
-                    <i class="fas fa-images"></i> Open Gallery
-                </button>
-            </div>
-
             <!-- Drawing Canvas -->
             <div class="demo-card">
                 <div class="demo-icon">🎨</div>
@@ -171,7 +139,7 @@
             </div>
 
             <!-- Dua Recorder -->
-            <div class="demo-card">
+            <!-- <div class="demo-card">
                 <div class="demo-icon">🎤</div>
                 <h3>Dua Recorder</h3>
                 <p>Record and save dua recitations</p>
@@ -185,7 +153,7 @@
                     <i class="fas fa-microphone"></i> Record Dua
                 </button>
 
-            </div>
+            </div> -->
 
             <!-- Checklist -->
             <div class="demo-card">
@@ -237,65 +205,6 @@
     <div class="confetti-container" id="confettiContainer"></div>
 
     <!-- Modals -->
-    <div class="modal" id="photoModal">
-        <div class="modal-content photo-modal">
-            <button class="modal-close" onclick="closePhotoModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="photo-upload-container">
-                <h2>📸 Upload Quest Proof</h2>
-                <p>Show us how you completed this quest!</p>
-                
-                <div class="upload-options">
-                    <button class="btn btn-primary" onclick="triggerCamera()">
-                        <i class="fas fa-camera"></i> Take Photo
-                    </button>
-                    <button class="btn btn-secondary" onclick="triggerGallery()">
-                        <i class="fas fa-images"></i> Choose from Gallery
-                    </button>
-                </div>
-                
-                <input type="file" id="photoInput" accept="image/*" capture="environment" style="display: none;" onchange="handlePhotoUpload(event)">
-                <input type="file" id="galleryInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
-                
-                <div id="photoPreview" class="photo-preview" style="display: none;">
-                    <img id="previewImage" src="" alt="Preview">
-                    <div class="photo-actions">
-                        <button class="btn btn-primary" onclick="demoSavePhoto()">
-                            <i class="fas fa-check"></i> Save Demo Photo
-                        </button>
-                        <button class="btn btn-secondary" onclick="retakePhoto()">
-                            <i class="fas fa-redo"></i> Retake
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="skip-photo">
-                    <button class="btn btn-text" onclick="closePhotoModal()">
-                        Close Demo
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="galleryModal">
-        <div class="modal-content gallery-modal">
-            <button class="modal-close" onclick="closeGalleryModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="gallery-container">
-                <h2>📷 Your Quest Photos</h2>
-                <div id="photoGalleryGrid" class="photo-gallery-grid">
-                    <div class="gallery-empty">
-                        <i class="fas fa-camera"></i>
-                        <p>This is where your quest photos will appear!<br>Complete quests in the main app to see photos here.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal" id="activityModal">
         <div class="modal-content activity-modal">
             <button class="modal-close" onclick="closeActivityModal()">
@@ -310,14 +219,7 @@
     <script src="js/animations.js"></script>
     <script src="js/interactive-features.js"></script>
     
-    <script>
-        // Demo-specific functions
-        function demoSavePhoto() {
-            alert('✅ Photo saved! (Demo Mode)\n\nIn the real app, this photo would be saved to your quest gallery and linked to the specific quest.');
-            createConfetti();
-            closePhotoModal();
-        }
-        
+    <script>        
         // Mock app object for demo
         if (typeof app === 'undefined') {
             window.app = {
@@ -343,6 +245,7 @@
                 }
             };
         }
+        
     </script>
 </body>
 </html>
